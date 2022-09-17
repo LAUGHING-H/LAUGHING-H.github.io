@@ -1,0 +1,137 @@
+html,body{
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+.img-auto{
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.box{
+    width: 100%;
+    height: 100%;
+}
+
+.main{
+    width: 1900px;
+}
+
+.container{
+    width: 500px;
+    margin: 0 auto;
+}
+
+.img{
+    width: 100%;
+    height: 300px;
+    position: relative;
+}
+
+.bg{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.308);
+    text-align: center;
+    font-size: 25px;
+    color: #90EE90;
+    line-height: 300px;
+    letter-spacing: 10px;
+}
+
+.Blank-block{
+    height: 100px;
+    width: 100px;
+    background-color: #fff;
+    position: absolute;
+    left: 0;
+    top: 0;
+    border-radius: 20px;
+}
+
+.img-block {
+    height: 100px;
+    width: 100px;
+    background-image: url(../bb030fbd3c87b857c920c5dcc2f2fd5.jpg);
+    background-repeat:no-repeat;
+    background-position: 0 0;
+    background-size: 500px 300px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    border-radius: 20px;
+
+}
+
+.slipper-kuan{
+    width: 100%;
+    height: 60px;
+    position: relative;
+    background-color: #E8E8E8;
+}
+
+.slipper{
+    width: 100px;
+    height: 60px;
+    background-color: #fff;
+    border-radius: 20px;
+    border-top-left-radius: 0;     
+    border-bottom-left-radius: 0;  
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 9;
+    cursor: pointer;
+}
+
+.slipper-body{
+    width: 0;
+    height: 100%;
+    background-color: #90EE90;
+    z-index: 9;
+}
+
+.text{
+    width: 180px;
+    height: 60px;
+    position: absolute;
+    text-align: center;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin: auto auto;
+    letter-spacing: 10px;
+    font-size: 20px;
+    line-height: 60px;
+    z-index: 0;
+    display: block;
+}
+
+.flushed{
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 60px;
+    height: 100%;
+    text-align: center;
+    line-height: 60px;
+    display: none;
+    cursor: pointer;
+}
+
+@keyframes fadenum{
+    from{transform:rotate(0deg)}
+    to{transform:rotate(180deg)};
+}
+
+
+
+
+

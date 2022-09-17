@@ -1,0 +1,347 @@
+html,body{
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.img-auto{
+    width: 100%;
+    height: 100%;
+    display: block;
+    margin: 0 auto;
+}
+
+.box{
+    width: 100%;
+    height: 100%;
+}
+
+.top{
+    width: 100%;
+    height: 40px;
+}
+
+.top .container{
+    width: 500px;
+    height: 100%;
+    margin: 0 auto;
+    background-color:#043567;
+}
+
+.top .top-text{
+    font-size: 18px;
+    margin-left: 15px;
+    color: #fff;
+    float: left;
+    font-weight: bold;
+    line-height: 40px;
+}
+
+.main{
+    width: 100%;
+    height: 615px;
+} 
+
+.main .container{
+    width: 500px;
+    margin: 0 auto;
+    padding: 0 15px 0 15px;
+    box-sizing: border-box;
+    border: 1px solid black;
+    border-top: none;
+    padding-bottom: 50px;
+    box-sizing: border-box;
+}
+
+.main .area {
+    width: 100%;
+    height: 40px;
+    position: relative;
+}
+
+.main .city{
+    height: 100%;
+    font-size: 16px;
+    float: left;
+    line-height: 40px;
+    margin-right: 5px;
+}
+
+.main .chooseBtn{
+    width: 30px;
+    text-align: center;
+    border: 1px solid #3B7BC2;
+    color: #3B7BC2;
+    font-size: 12px;
+    float: left;
+    border-radius: 10px;
+    margin-top: 11px;
+    cursor: pointer;
+}
+
+.main .chooseBtn:hover{
+    color: #fff;
+    background-color: #043567;
+}
+
+.main .choose-city{
+    width: 100%;
+    height: 265px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    top: 45px;
+    background-color: #fff;
+    border: 1px solid #ccd1d7;;
+    box-sizing: border-box;
+    display: none;
+    z-index: 9;
+}
+
+.main .choose-text {
+    font-size: 16px;
+    padding-left: 10px;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.main .input{
+    width: 240px;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.main .input .province_list{
+    width: 100%;
+    height: 30px;
+    margin-bottom: 10px;
+}
+
+.main .input .city_list{
+    width: 100%;
+    height: 30px;
+    margin-bottom: 10px;
+}
+
+.main .input .county_list{
+    width: 100%;
+    height: 30px;
+    margin-bottom: 10px;
+}
+
+.main .saveBtn{
+    width: 240px;
+    height: 30px;
+    background-color: #043567;
+    color: #fff;
+    cursor: pointer;
+    margin: 0 auto;
+    text-align: center;
+    line-height: 30px;
+}
+
+.main .icon-chahao{
+    position: absolute;
+    right: 0;
+    top: 0;
+    cursor: pointer;
+}
+
+.main .temperature{
+    width: 100%;
+    height: 107px;
+    border-bottom: 1px solid #dfdfdf;
+}
+
+.main .temperature .left{
+    width: 160px;
+    float: left;
+    text-align: center;
+    height: 106px;
+    position: relative;
+}
+
+.main .temperature .left .wendu{
+    font-size: 80px;
+    color: #043567;
+    float: none;
+    height: 110px;
+    width: 100%;
+    cursor: pointer;
+}
+
+.main .temperature .left .unit{
+    width: 22px;
+    height: 29px;
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 22px;
+    color: #043567;
+    float: none;
+    cursor: pointer;
+}
+
+.main .right{
+    width: 109px;
+    height: 106px;
+    float: right;
+}
+
+.main .right .top{
+    width: 100%;
+    height: 16px;
+    font-size: 12px;
+    line-height: 16px;
+    float: left;
+    margin-top: 30px;
+    text-align: center;
+    background: rgb(156, 202, 127);
+    color: #fff;
+    border-radius: 70px;
+    margin-bottom: 10px;
+}
+
+.main .right .center{
+    width: 100%;
+    height: 16px;
+    font-size: 12px;
+    line-height: 16px;
+    float: left;
+    margin-bottom: 5px;
+}
+
+.main .right .center .center-icon{
+    background: url(../img/indexImg_gl.png) no-repeat -407px -367px;
+	width: 14px;
+	height: 11px;
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.main .right .bottom{
+    width: 100%;
+    height: 16px;
+    font-size: 12px;
+    line-height: 16px;
+    float: left;
+}
+
+.main .right .bottom .bottom-icon{
+    background: url(../img/indexImg_gl.png) no-repeat -378px -368px;
+	width: 14px;
+	height: 13px;
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.main .week-item {
+    width: 100%;
+    height: 21px;
+    overflow: hidden;
+    margin-top: 10px;
+    font-size: 12px;
+    margin-bottom: 10px;
+}
+
+.main .week-item .list {
+    width: calc(100% / 7);
+    float: left;
+    text-align: center;
+    height: 100%;
+    line-height: 21px;
+    color: #252525;
+}
+
+.main .weather-top {
+    width: 100%;
+    height: 40px;
+    overflow: hidden;
+    margin-bottom: 10px;
+    padding-left: 10px;
+    box-sizing: border-box;
+}
+
+.main .weather-top .list {
+    width: calc((100% / 7 ) - 10px);
+    float: left;
+    height: 100%;
+    margin-right: 10px;
+}
+
+.main .weather-top .list:last-child{
+    margin-right: 0;
+}
+
+.main .weather-text{
+    width: 100%;
+    overflow: hidden;
+    margin-bottom: 10px;
+    padding-left: 3px;
+}
+
+.main .weather-text .list{
+    width: calc(100% / 7);
+    float: left;
+    text-align: center;
+    font-size: 13px;
+    word-break: normal
+}
+
+.main .Max{
+    width: 100%;
+    height: 85px;
+    margin-bottom: 10px;
+    margin-top: 5px;
+}
+
+/* .main .Max .list{
+    height: 30px;
+    width: calc(100% / 7);
+    float: left;
+    text-align: center;
+    line-height: 30px;
+
+} */
+
+
+.main .Min{
+    width: 100%;
+    height: 85px;
+    margin-bottom: 20px;
+    margin-top: 5px;
+}
+
+.main .Min .list{
+    height: 30px;
+    width: calc(100% / 7);
+    float: left;
+    text-align: center;
+    line-height: 30px;
+}
+
+.main .tis-text{
+    margin-bottom: 10px;
+}
+
+.main .tips .text {
+    line-height: 30px;
+    text-indent:33px;
+}
+
+.blue{
+    color: #1F6EBD !important;
+}
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/1..css">
+    <link rel="stylesheet" href="./css/iconfont.css">
+</head>
+
+<body>
+
+
+    <div class="box">
+        <div class="main">
+            <div class="container">
+
+                <div class="img">
+                    <img class="img-auto" src="./bb030fbd3c87b857c920c5dcc2f2fd5.jpg" alt="">
+                    <div class="Blank-block"></div>
+
+                    <div class="img-block"></div>
+
+                </div>
+
+                <div class="slipper-kuan">
+                    <div class="slipper-body"></div>
+                    <div class="slipper"></div>
+                    <div class="text">滑动滑块验证</div>
+                    <span class="iconfont icon-shuaxin flushed"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+        window.onload = function () {
+            var img = document.querySelector('.img');  //图片盒子节点
+            var blankBlock = document.querySelector('.Blank-block');  //空白块节点
+            var slipper = document.querySelector('.slipper');  //滑动块节点
+            var slipperKuan = document.querySelector('.slipper-kuan')  //滑动栏接点
+            var imgBlock = document.querySelector('.img-block')  //滑动图片节点
+            var slipperBody = document.querySelector('.slipper-body')  //滑动尾部节点
+            var text = document.querySelector('.text') //滑动栏文字节点
+            var flushed = document.querySelector('.flushed')  //刷新按钮节点
+
+            //图片盒子的高和宽
+            var imgStyle = getComputedStyle(img)
+            var imgWidth = parseFloat(imgStyle.width);
+            var imgHeight = parseFloat(imgStyle.height);
+
+            //空白块的高和宽
+            var blankBStyle = getComputedStyle(blankBlock);
+            var blankBStyleHeight = parseFloat(blankBStyle.height);
+            var blankBStyleWitdh = parseFloat(blankBStyle.width);
+
+            //滑动栏的高和宽
+            var slipperKuanStyle = getComputedStyle(slipperKuan);
+            var slipperKStyleWidth = parseFloat(slipperKuanStyle.width);
+
+            //滑动块的高和宽
+            var slipperStyle = getComputedStyle(slipper);
+            var slipperStyleWidth = parseFloat(slipperStyle.width)
+
+            //滑动图片的高和宽
+            var imgBlockStyle = getComputedStyle(imgBlock)
+            var imgBStyleWidth = parseFloat(imgBlockStyle.width)
+
+
+            //随机取图片宽度一半和高度随机数
+            var randomWitdh = Math.floor(Math.random() * (imgWidth - (imgWidth / 2) + 1)) + (imgWidth / 2) - blankBStyleWitdh;
+            var randomHeight = Math.floor(Math.random() * (imgHeight + 1)) - blankBStyleHeight;
+
+            //控制空白块随机出现的范围，保证空白块出现在图片的右半部分
+            randomHeight = randomHeight <= 0 ? 0 : randomHeight > 0 ? randomHeight : randomHeight;
+            randomWitdh = randomWitdh <= 250 ? 250 : randomWitdh > 250 ? randomWitdh : randomWitdh;
+
+            blankBlock.style.left = randomWitdh + 'px';
+            blankBlock.style.top = randomHeight + 'px';
+            // console.log('randomWitdh ==>', randomWitdh)
+
+            //滑动图片的图片定位，让滑动图片显示的内容是空白方块所掩盖的
+            imgBlock.style.backgroundPosition = `-${randomWitdh}px -${randomHeight}px `;
+
+            //让滑动图片给空白块保持在水平高度上
+            imgBlock.style.top = randomHeight + 'px';
+
+
+            //滑动图片的可移动的范围最大值和最小值
+            var slipperMax = slipperKStyleWidth - blankBStyleWitdh;
+            var slipperMin = 0;
+
+            //让滑动块的中线与滑动图片的中线处于垂直线上
+            slipper.style.left = imgBStyleWidth / 2 - slipperStyleWidth / 2 + 'px';
+            slipperBody.style.width = imgBStyleWidth / 2 - slipperStyleWidth / 2 + 'px';
+
+
+            slipper.onmousedown = function (e) {
+
+                e.preventDefault();
+
+                //初始化滑动图片，滑动尾部，滑动块的transition
+                imgBlock.style.transition = "none";
+                slipper.style.transition = "none";
+                slipperBody.style.transition = "none";
+
+                text.style.display = 'none';
+
+                //滑动方块的初始位置
+                var startX = e.clientX - slipper.offsetLeft;
+                console.log(slipper.offsetLeft)
+
+                document.onmousemove = function (e2) {
+
+                    e2.preventDefault();
+                    var endX = e2.clientX;
+
+                    //滑动方块的移动距离
+                    var slipperLeft = endX - startX - 15;
+
+                    // 判断滑动方块和滑动图片的偏移距离
+                    slipperLeft = slipperLeft <= 0 ? slipperMin : slipperLeft > slipperMax ? slipperMax : slipperLeft;
+
+                    slipper.style.left = slipperLeft + imgBStyleWidth / 2 - slipperStyleWidth / 2 + 'px';
+                    slipperBody.style.width = slipperLeft + imgBStyleWidth / 2 - slipperStyleWidth / 2 + 'px';
+                    imgBlock.style.left = slipperLeft + 'px';
+                }
+
+            }
+
+
+
+
+            document.onmouseup = function () {
+
+                var imgBlockLeft = parseFloat(imgBlock.style.left);
+                // console.log('imgBlockLeft ==> ', imgBlockLeft)
+                // console.log(randomWitdh)
+
+                //判断滑动图片的偏移距离是否在空白块的偏移离内
+                if (imgBlockLeft >= randomWitdh - 5 && imgBlockLeft <= randomWitdh + 5) {
+
+                    slipper.onmousedown = null;
+
+                    var bg = document.createElement('div');
+                    bg.textContent = '验证通过';
+                    bg.classList.add('bg')
+                    img.appendChild(bg)
+
+                    slipper.style.left = 0 + 'px'
+                    slipperBody.style.width = 0 + 'px'
+
+                    imgBlock.remove()
+                    blankBlock.remove()
+
+                    alert('验证通过')
+                    flushed.style.display = 'inline-block'
+                    slipper.style.cursor = 'default'
+                    document.onmouseup = null
+                } else {
+                    imgBlock.style.left = 0 + 'px';
+                    slipper.style.left = imgBStyleWidth / 2 - slipperStyleWidth / 2 + 'px';
+                    slipperBody.style.width = imgBStyleWidth / 2 - slipperStyleWidth / 2 + 'px';
+
+                    imgBlock.style.transition = "left 0.5s ease";
+                    slipper.style.transition = "left 0.5s ease";
+                    slipperBody.style.transition = "width 0.5s ease";
+
+                    setTimeout(function () {
+                        text.style.display = 'block'
+                    }, 500)
+
+                }
+
+                document.onmousemove = null
+
+
+            }
+
+            //点击刷新按钮
+            flushed.onclick = function () {
+                flushed.style.animation = 'fadenum 1s';
+                setTimeout(function () {
+                    location.reload()
+                }, 1000)
+            }
+
+
+
+        }
+
+    </script>
+
+
+</body>
+
+</html>
