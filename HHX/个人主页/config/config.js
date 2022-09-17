@@ -139,7 +139,7 @@ var config = {
     url: [
         //背景图、头像、作品展示背景、其他经历背景
         "./images/intro-bg.jpg",
-        "./images/tx.jpg",
+        "./images/640.jfif",
         "./images/work-bk.png",
         "./images/4.jpg"
     ]
