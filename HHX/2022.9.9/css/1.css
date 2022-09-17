@@ -1,0 +1,431 @@
+html,body {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+}
+
+.img-auto {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.box {
+    width: 100%;
+    height: 100%;
+}
+
+
+.top {
+    width: 100%;
+}
+
+.top .container {
+    width: 1800px;
+    height: 600px;
+    margin: 0 auto;
+}
+
+.top .left {
+    width: 225px;
+    height: 100%;
+    background-color: #F0F0F0;
+    padding: 25px 40px;
+    box-sizing: border-box;
+    float: left;
+}
+
+.top .left .logo{
+    width: 100%;
+    height: 40px;
+    margin-bottom: 20px;
+}
+
+.top .left .lf-item {
+    width: 100%;
+    overflow: hidden;
+}
+
+.top .left .lf-item .song-list {
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    padding: 0 20px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+.active {
+    background-color: #1ECE9B;
+    border-radius: 20px;
+}
+
+audio {
+    width: 100%;
+    height: 50px;
+}
+
+.icon-liebiao {
+    margin-right: 8px;
+    color: #2C2C2C;
+}
+
+.top .left .lf-item .history {
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    padding: 0 20px;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+.icon-shouye{
+    margin-right: 8px;
+    font-weight: bolder;
+    color: #2C2C2C;
+}
+
+.top .right {
+    width: 975px;
+    height: 100%;
+    background-color: #F6F6F6;
+    float: right;
+    padding: 0 32px;
+    box-sizing: border-box;
+}
+
+.right .list-name {
+    width: 100%;
+    height: 50px;
+    font-size: 30px;
+    font-weight: bolder;
+    line-height: 50px;
+    margin-bottom: 20px;
+}
+
+.right .song-item {
+    width: 100%;
+    height: 30px;
+    overflow: hidden;
+}
+
+.right .song-item div{
+    float: left;
+    line-height: 30px;
+    color: #8E8E8E;
+    font-size: 15px;
+}
+
+.song-name{
+    width: 360px;
+}
+
+.songer{
+    width: 200px;
+}
+
+.album {
+    width: 200px;
+}
+
+.right .song-it {
+    width: 100%;
+}
+
+.right .song-it .song-list {
+    width: 100%;
+    height: 50px;
+    font-size: 13px;
+    line-height: 50px;
+
+}
+
+.right .song-it .song-list:hover {
+    background-color: rgb(239, 239, 239);
+    cursor: pointer;
+}
+
+.list-song {
+    width: 360px;
+    height: 100%;
+    float: left;
+    overflow: hidden; 
+    white-space: nowrap; 
+    text-overflow: ellipsis
+}
+
+.list-songer {
+    width: 200px;
+    height: 100%;
+    float: left;
+    overflow: hidden; 
+    white-space: nowrap; 
+    text-overflow: ellipsis
+}
+
+.list-album {
+    width: 200px;
+    height: 100%;
+    float: left;
+    overflow: hidden; 
+    white-space: nowrap; 
+    text-overflow: ellipsis
+}
+
+.icon-bofan {
+    width: 150px;
+    height: 100%;
+    float: left;
+    text-align: center;
+}
+
+.icon-bofang {
+    font-size: 25px!important;
+    cursor: pointer;
+}
+
+.center {
+    width: 600px;
+    height: 650px;
+    background-color: #120D24;
+    float: right;
+    color: #fff;
+    position: relative;
+}
+
+.center .lyric-song {
+    background-color: #120D24;
+    width: 100%;
+    height: 90px;
+    text-align: center;
+    line-height: 90px;
+    font-size: 25px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-weight: bold;
+    z-index: 2;
+}
+
+.center .lyric {
+    width: 100%;
+    overflow: hidden;
+    z-index: 1;
+    position: absolute;
+    top: 300px;
+    left: 0;
+}
+
+.center .lyric .lyric-list {
+    width: 100%;
+    height: calc((650px - 90px) / 10);
+    text-align: center;
+    line-height: 54px;
+    font-size: 20px;
+    z-index: 0;
+}
+
+.active1 {
+    font-size: 30px!important;
+    background-color: #8E8E8E;
+}
+
+.player {
+    width: 100%;
+    height: 50px;
+}
+
+.player .container {
+    width: 1800px;
+    height: 100%;
+    margin: 0 auto;
+}
+
+.player .container .main{
+    width: 1200px;
+    height: 100%;
+    background-color: #F6F6F6;
+    box-sizing: border-box;
+    padding-left: 75px;
+}
+
+.player .main .item-choose {
+    height: 100%;
+    float: left;
+}
+
+.player .main .item-choose .list-choose {
+    width: 50px;
+    height: 100%;
+    line-height: 50px;
+    text-align: center;
+    box-sizing: border-box;
+    float: left;
+}
+
+.list-choose .iconfont {
+    font-size: 30px!important;
+}
+
+.progress{
+    float: left;
+    width: 500px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+
+.progress .progress-bar {
+    float: right;
+    width: 100%;
+    height: 10px;
+    position: relative;
+}
+
+.progress .progress-bar .progress-bg{
+    width: 100%;
+    height: 10px;
+    border-radius: 6px;
+    background-color: #22292dd8;
+    cursor: pointer;
+}
+
+.progress .progress-bar .prgress-body{
+    width: 0;
+    height: 10px;
+    border-radius: 6px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto 0;
+    background-color: #0CB6D4;
+    cursor: pointer;
+}
+
+.progress .progress-bar .prgress-head{
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #fff;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -5px;
+    margin: auto 0;
+    cursor: pointer;
+}
+
+.sm-img {
+    float: left;
+    width: 50px;
+    height: 100%;
+    margin-right: 10px;
+    border-radius: 10px;
+}
+
+.main .name {
+    float: left;
+    width: 80px;
+    height: 50px;
+    line-height: 50px;
+    font-size: 12px;
+    overflow: hidden; 
+    white-space: nowrap; 
+    text-overflow: ellipsis
+}
+
+.main .voice {
+    width: 210px;
+    height: 100%;
+    line-height: 50px;
+    float: left;
+} 
+
+.main .icon-voice {
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    float: left;
+}
+
+.icon-yinliang {
+    font-size: 25px!important;
+}
+
+
+.voice .progress-bar1 {
+    float: right;
+    width: calc(100% - 50px);
+    height: 10px;
+    margin-top: 20px;
+    position: relative;
+}
+
+.voice .progress-bar1 .progress-bg1{
+    width: 100%;
+    height: 10px;
+    border-radius: 6px;
+    background-color: #22292dd8;
+    cursor: pointer;
+}
+
+.voice .progress-bar1 .prgress-body1{
+    width: 160px;
+    height: 10px;
+    border-radius: 6px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto 0;
+    background-color: #0CB6D4;
+    cursor: pointer;
+}
+
+.voice .progress-bar1 .prgress-head1{
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #fff;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 155px;
+    margin: auto 0;
+    cursor: pointer;
+}
+
+.time {
+    width: 100px;
+    height: 50px;
+    float: left;
+    font-size: 12px;
+}
+
+.endtime {
+    width: 40%;
+    height: 100%;
+    text-align: center;
+    line-height: 50px;
+    float: left;
+}
+
+.ingtime {
+    width: 40%;
+    height: 100%;
+    text-align: center;
+    line-height: 50px;
+    float: left;
+}
+
+.fuhao {
+    width: 10px;
+    height: 50px;
+    line-height: 50px;
+    float: left;
+    text-align: center;
+}

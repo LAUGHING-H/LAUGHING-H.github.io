@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/1.css">
+    <link rel="stylesheet" href="./css/iconfont.css">
+</head>
+
+<body>
+
+    <div class="box">
+        <div class="top">
+            <div class="container">
+                <div class="left">
+                    <div class="logo">
+                        <img class="img-auto" src="./images/logo.png" alt="">
+                    </div>
+                    <div class="lf-item">
+                        <div class="song-list active sl">
+                            <span class="iconfont icon-liebiao"></span>
+                            <span>歌曲列表</span>
+                        </div>
+                        <div class="history sl">
+                            <span class="iconfont icon-shouye"></span>
+                            <span>最近播放</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="center">
+                    <div class="lyric-song">歌曲名</div>
+                    <div class="lyric">
+                        <div class="lyric-list">暂未搜索到歌词</div>
+                        <!-- <div class="lyric-list active1">才挣扎 才想逃</div>
+                        <div class="lyric-list">才挣扎 才想逃</div>
+                        <div class="lyric-list">才挣扎 才想逃</div>
+                        <div class="lyric-list">才挣扎 才想逃</div>
+                        <div class="lyric-list">才挣扎 才想逃</div>
+                        <div class="lyric-list">才挣扎 才想逃</div>
+                        <div class="lyric-list">才挣扎 才想逃</div>
+                        <div class="lyric-list">才挣扎 才想逃</div>
+                        <div class="lyric-list">才挣扎 才想逃</div>
+                        <div class="lyric-list">才挣扎 才想逃</div>
+                        <div class="lyric-list">才挣扎 才想逃</div>
+                        <div class="lyric-list">才挣扎 才想逃</div>
+                        <div class="lyric-list">才挣扎 才想逃</div>
+                        <div class="lyric-list">才挣扎 才想逃</div>
+                        <div class="lyric-list">才挣扎 才想逃</div>
+                        <div class="lyric-list">才挣扎 才想逃</div>
+                        <div class="lyric-list">才挣扎 才想逃</div> -->
+                    </div>
+                </div>
+
+                <div class="right">
+                    <div class="list-name">歌曲列表</div>
+                    <div class="song-item">
+                        <div class="song-name">歌曲</div>
+                        <div class="songer">歌手</div>
+                        <div class="album">专辑</div>
+                    </div>
+                    <div class="song-it">
+                        <!-- <div class="song-list">
+                            <div class="list-song">听他们说</div>
+                            <div class="list-songer">李明汉</div>
+                            <div class="list-album">不要再说你爱我</div>
+                            <div class="icon-bofan">
+                                <span class="iconfont icon-bofang"></span>
+                            </div>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="player">
+            <div class="container">
+                <div class="main">
+                    <div class="item-choose">
+                        <div class="list-choose">
+                            <span class="iconfont icon-shangyishou"></span>
+                        </div>
+
+                        <div class="list-choose">
+                            <span class="iconfont icon-bofang bofang" style="font-size: 35px!important;"
+                                data-play="flase"></span>
+                        </div>
+
+                        <div class="list-choose">
+                            <span class="iconfont icon-xiayishou"></span>
+                        </div>
+                    </div>
+
+                    <div class="sm-img">
+                        <img class="img-auto sm" src="./images/QQ截图20220911210316.png" style="border-radius: 10px;"
+                            alt="">
+                    </div>
+
+                    <div class="name">歌曲名</div>
+
+
+                    <div class="progress">
+                        <div class="progress-bar">
+                            <div class="progress-bg"></div>
+                            <div class="prgress-body"></div>
+                            <div class="prgress-head"></div>
+                        </div>
+                    </div>
+
+                    <div class="time">
+                        <div class="ingtime">00:00</div>
+                        <span class="fuhao">/</span>
+                        <div class="endtime">00:00</div>
+                    </div>
+
+                    <div class="voice">
+
+                        <div class="icon-voice">
+                            <span class="iconfont icon-yinliang"></span>
+                        </div>
+
+                        <div class="progress-bar1">
+                            <div class="progress-bg1"></div>
+                            <div class="prgress-body1"></div>
+                            <div class="prgress-head1"></div>
+                        </div>
+                    </div>
+
+                    <audio src="" controls class="music"></audio>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="./js/jquery-3.6.0.min.js"></script>
+    <script>
+
+        $(function () {
+            let songerArr = []
+            let $lyric = $('.lyric')
+
+
+
+
+            function split(lrc) {//把lrc歌词分割成数组，
+                let split_1 = lrc.split('\n');
+                let length = split_1.length;
+                for (let i = 0; i < length; i++) {
+                    let lrcArr = split_1[i];
+                    split_1[i] = change(lrcArr);
+                    function change(str) {
+                        let lrc = str.split(']');
+                        let timer = lrc[0].replace('[', '');
+                        let str_music = lrc[1];
+                        let time_split = timer.split(':');
+                        let s = +time_split[1];
+                        let min = +time_split[0];
+                        return {
+                            time: min * 60 + s,
+                            lrc: str_music//分割好到歌词和时间
+                        }
+
+                    }
+                }
+                return split_1
+            }
+
+
+            function gongneng() {
+                $('.bo').on({
+                    click: function () {
+
+                        $('.lyric').css({
+                            top: 300
+                        })
+
+                        $.ajax({
+                            type: 'get',
+                            url: ' https://apis.netstart.cn/music/lyric',
+                            data: {
+                                id: $(this).attr('data-id')
+                            },
+                            success: function (lyrics) {
+                                console.log('歌词 lyrics ==> ', lyrics);
+
+                                let lrcArr = split(lyrics.lrc.lyric);
+                                let lyric = document.querySelector('.lyric')
+
+                                // console.log(lrcArr)
+
+
+                                // setInterval(function(){
+                                // },1000)
+
+                                $lyric.empty()
+                                for (let j = 0; j < lrcArr.length; j++) {
+                                    let $lyricList = `<div class="lyric-list" data-time="${lrcArr[j].time}">${lrcArr[j].lrc}</div>`
+                                    $lyric.append($lyricList)
+                                }
+
+                                function setCurrentLi() {
+                                    let time = audio.currentTime;
+                                    // console.log(time)
+                                    for (let i = 0; i < lrcArr.length; i++) {
+                                        let play = lrcArr[i];
+                                        // console.log(play.time)
+                                        if (time - play.time <= 0) {
+                                            return i;
+                                        }
+                                    } return -1;
+                                }
+
+                                function current() {//设置top，让其滚动
+                                    let li = setCurrentLi();
+                                    let divHeight = 300;
+                                    let liHeight = 56;
+                                    let top = liHeight * li - divHeight / 2 + liHeight / 2;
+                                    if (top < 0) {
+                                        top = 0;
+                                    }
+                                    lyric.style.marginTop = -top + 'px';
+                                    // console.log('top'+top);
+                                    let playLi = lyric.querySelector('.active1')
+                                    if (playLi) {
+                                        playLi.className = 'lyric-list';
+                                    }
+                                    if (li > 0) {
+                                        lyric.children[li - 1].className = 'lyric-list active1'
+
+                                    }
+                                }
+
+                                audio.ontimeupdate = function () {
+                                    // console.log(document.querySelector('audio').currentTime)
+                                    let time1 = $('.endtime').text();
+                                    let minute = Number(time1.slice(0, 2)) * 60
+                                    let second = Number(time1.slice(3, 5))
+                                    let alltime = minute + second
+                                    // console.log(alltime)
+
+                                    let time4 = parseInt(document.querySelector('audio').currentTime)
+                                    let minutes = parseInt(time4 / 60)
+                                    // console.log(minutes)
+                                    let seconds = time4 - (minutes * 60)
+                                    // console.log(seconds)
+                                    minutes = String(minutes).length > 1 ? minutes : String(minutes).length < 2 ? '0' + minutes : minutes
+                                    seconds = String(seconds).length > 1 ? seconds : String(seconds).length < 2 ? '0' + seconds : seconds
+                                    minutes = String(minutes)
+                                    seconds = String(seconds)
+                                    // console.log(minutes,seconds)
+
+                                    let timeProportion = String(time4 / alltime).slice(0, 5)
+                                    // console.log(Number(timeProportion))
+                                    document.querySelector('.ingtime').textContent = minutes + ":" + seconds
+                                    // console.log(Number(timeProportion) * parseInt(getComputedStyle(document.querySelector('.progress-bg')).width))
+                                    document.querySelector('.prgress-head').style.left = Number(timeProportion) * (parseInt(getComputedStyle(document.querySelector('.progress-bg')).width) - 5) - 5 + 'px';
+                                    document.querySelector('.prgress-body').style.width = Number(timeProportion) * (parseInt(getComputedStyle(document.querySelector('.progress-bg')).width)) + 'px';
+                                    current()
+                                }
+
+                            }
+                        })
+
+                        // console.log(this.dataset.id)
+                        $('audio').attr('src', `https://music.163.com/song/media/outer/url?id=${this.dataset.id}.mp3`)
+                        $('.bofang').removeClass('icon-bofang')
+                        $('.bofang').addClass('icon-zanting')
+                        $('.bofang').attr('data-play', 'ture')
+                        $('.name').text(`${this.dataset.name}`)
+                        $('.sm').attr('src', `${this.dataset.img}`)
+                        $('.sm').on({
+                            load: function () {
+                                $('.lyric-song').text($('.name').text())
+                                document.querySelector('audio').play()
+                            }
+                        })
+                    }
+                })
+            }
+
+
+            //获取数据，创建歌曲列表ui
+            $.ajax({
+                type: 'get',
+                url: 'https://apis.netstart.cn/music/personalized/newsong',
+                data: {
+                    limit: 10
+                },
+                success: function (data) {
+                    console.log('歌曲列表 data ==> ', data);
+
+                    for (let i = 0; i < data.result.length; i++) {
+                        songerArr = []
+                        data.result[i].song.artists.forEach(item => {
+                            songerArr.push(item.name)
+                        });
+
+                        // console.log(songerArr)
+
+                        let $list = $(` <div class="song-list">
+                            <div class="list-song">${data.result[i].name}</div>
+                            <div class="list-songer">${songerArr.join('/')}</div>
+                            <div class="list-album">《${data.result[i].song.album.name}》</div>
+                            <div class="icon-bofan">
+                                <span class="iconfont icon-bofang bo local" data-id="${data.result[i].id}" data-name="${data.result[i].name}" data-img="${data.result[i].picUrl}"></span>
+                            </div>
+                        </div>`)
+
+                        $('.song-it').append($list)
+
+                    }
+                    // console.log($('.icon-bofang'))
+
+                    $('.local').on({
+                        click: function () {
+                            let historyArr = JSON.parse(localStorage.getItem(LOCALSTORAGE_KEY)) ?? []
+
+                            if (historyArr.indexOf(this.dataset.id) == -1) {
+                                historyArr = [...historyArr, this.dataset.id]
+                            }
+
+                            let historyStr = JSON.stringify(historyArr)
+
+                            localStorage.setItem(LOCALSTORAGE_KEY, historyStr)
+                        }
+                    })
+
+                    gongneng();
+                }
+            })
+
+
+            //鼠标点击
+            $('.progress-bar').on({
+                click: function (e) {
+                    // console.log($(this))
+                    let ProgressBarLeft = $(this).offset().left;
+                    let coordinate = e.clientX - ProgressBarLeft - 5;
+                    coordinate = coordinate > 0 ? coordinate : coordinate <= 0 ? 0 : coordinate;
+                    $(this).children('.prgress-body').css({
+                        width: coordinate
+                    })
+                    $(this).children('.prgress-head').css({
+                        left: coordinate - 5
+                    })
+
+                    // console.log($('.endtime'))
+                    let time1 = $('.endtime').text();
+
+                    let minute = Number(time1.slice(0, 2)) * 60
+                    let second = Number(time1.slice(3, 5))
+
+                    let alltime = minute + second
+                    // console.log(alltime)
+
+                    let ingtime = Math.ceil((e.clientX - ProgressBarLeft) / $('.progress-bar').width() * alltime)
+                    console.log(ingtime)
+
+                    if (ingtime == 0) {
+                        $('.ingtime').text('00:00')
+                    } else {
+                        document.querySelector('audio').currentTime = ingtime
+                    }
+                }
+            })
+
+
+            //鼠标按下
+            $('.prgress-head').on({
+                mousedown: function (e1) {
+                    e1.preventDefault();
+                    x1 = e1.clientX - $(this).position().left;
+                    // console.log(x1)
+                    let Phead = $(this);
+                    $(document).on({
+                        mousemove: function (e2) {
+                            e2.preventDefault();
+                            x2 = e2.clientX;
+                            let coordinate = x2 - x1;
+                            coordinate = coordinate <= 0 ? 0 : coordinate > Phead.parent().width() - $('.prgress-head').width() ? Phead.parent().width() - 5 : coordinate;
+                            // console.log(coordinate)
+
+                            Phead.css({
+                                left: coordinate - 5
+                            })
+
+                            Phead.prev().css({
+                                width: coordinate
+                            })
+
+                            let time1 = $('.endtime').text();
+
+                            let minute = Number(time1.slice(0, 2)) * 60
+                            let second = Number(time1.slice(3, 5))
+
+                            let alltime = minute + second
+                            // console.log(alltime)
+
+                            let ingtime = Math.ceil(coordinate / $('.progress-bar').width() * alltime)
+                            // console.log(ingtime)
+
+                            if (ingtime == 0) {
+                                $('.ingtime').text('00:00')
+                            } else {
+                                document.querySelector('audio').currentTime = ingtime
+                            }
+
+                        }
+                    })
+                }
+            })
+
+            //鼠标点击1
+            $('.progress-bar1').on({
+                click: function (e) {
+                    // console.log($(this))
+                    let ProgressBarLeft = $(this).offset().left;
+                    // console.log(ProgressBarLeft)
+                    let coordinate = e.clientX - ProgressBarLeft - 5;
+                    coordinate = coordinate > 0 ? coordinate : coordinate <= 0 ? 0 : coordinate;
+                    console.log(coordinate)
+                    $(this).children('.prgress-body1').css({
+                        width: coordinate
+                    })
+                    $(this).children('.prgress-head1').css({
+                        left: coordinate - 5
+                    })
+
+                    document.querySelector('audio').volume = $('.prgress-body1').width() / $(this).width() * 1;
+
+
+                }
+            })
+
+
+            //鼠标按下1
+            $('.prgress-head1').on({
+                mousedown: function (e1) {
+                    e1.preventDefault();
+                    x1 = e1.clientX - $(this).position().left;
+                    // console.log(x1)
+                    let Phead = $(this);
+                    $(document).on({
+                        mousemove: function (e2) {
+                            e2.preventDefault();
+                            x2 = e2.clientX;
+                            let coordinate = x2 - x1;
+                            coordinate = coordinate <= 0 ? 0 : coordinate > Phead.parent().width() - $('.prgress-head1').width() ? Phead.parent().width() : coordinate;
+                            // console.log(coordinate)
+                            // console.log(document.querySelector('audio').volume)
+                            document.querySelector('audio').volume = coordinate / $('.progress-bar1').width() * 1;
+                            Phead.css({
+                                left: coordinate - 5
+                            })
+
+                            Phead.prev().css({
+                                width: coordinate
+                            })
+
+
+                        }
+                    })
+                }
+            })
+
+            $(document).on({
+                mouseup: function () {
+                    $(document).off('mousemove');
+                }
+            })
+
+            $('.bofang').on({
+                click: function () {
+                    // if(this)
+                    // console.log($(this).attr('data-play'))
+                    if ($(this).attr('data-play') !== 'false') {
+                        $(this).addClass('icon-bofang')
+                        $(this).removeClass('icon-zanting')
+                        $(this).attr('data-play', 'false')
+                        document.querySelector('audio').pause()
+
+                    } else {
+                        $(this).addClass('icon-zanting')
+                        $(this).removeClass('icon-bofang')
+                        $(this).attr('data-play', 'ture')
+                        document.querySelector('audio').play()
+                    }
+                }
+            })
+
+
+            $('.song-list').on({
+                click: function () {
+                    $('.song-it').empty();
+                    $('.list-name').text('歌曲列表')
+
+                    $.ajax({
+                        type: 'get',
+                        url: 'https://apis.netstart.cn/music/personalized/newsong',
+                        data: {
+                            limit: 10
+                        },
+                        success: function (data) {
+                            console.log('歌曲列表 data ==> ', data);
+
+                            for (let i = 0; i < data.result.length; i++) {
+                                songerArr = []
+                                data.result[i].song.artists.forEach(item => {
+                                    songerArr.push(item.name)
+                                });
+
+                                // console.log(songerArr)
+
+                                let $list = $(` <div class="song-list">
+                            <div class="list-song">${data.result[i].name}</div>
+                            <div class="list-songer">${songerArr.join('/')}</div>
+                            <div class="list-album">《${data.result[i].song.album.name}》</div>
+                            <div class="icon-bofan">
+                                <span class="iconfont icon-bofang bo local" data-id="${data.result[i].id}" data-name="${data.result[i].name}" data-img="${data.result[i].picUrl}"></span>
+                            </div>
+                        </div>`)
+
+                                $('.song-it').append($list)
+
+                            }
+                            // console.log($('.icon-bofang'))
+
+                            $('.local').on({
+                                click: function () {
+                                    let historyArr = JSON.parse(localStorage.getItem(LOCALSTORAGE_KEY)) ?? []
+
+                                    if (historyArr.indexOf(this.dataset.id) == -1) {
+                                        historyArr = [...historyArr, this.dataset.id]
+                                    } else {
+                                        historyArr = historyArr.filter(item => item !== this.dataset.id)
+                                    }
+
+                                    let historyStr = JSON.stringify(historyArr)
+
+                                    localStorage.setItem(LOCALSTORAGE_KEY, historyStr)
+                                }
+                            })
+                            gongneng()
+                        }
+                    })
+                }
+            })
+
+
+            $('.history').on({
+                click: function () {
+                    $('.song-it').empty();
+                    $('.list-name').text('历史歌单')
+                    let historyArr = JSON.parse(localStorage.getItem('history'))
+                    console.log(historyArr)
+
+                    $.ajax({
+                        type: 'get',
+                        url: 'https://apis.netstart.cn/music/personalized/newsong',
+                        data: {
+                            limit: 30
+                        },
+                        success: function (historydata) {
+                            console.log('历史歌曲 historydata ==> ', historydata);
+
+                            for (let i = 0; i < historydata.result.length; i++) {
+                                // console.log(historydata.result[i])
+
+                                for (let j = 0; j < historyArr.length; j++) {
+                                    // console.log(historydata.result[i].id)
+                                    // console.log(historyArr[j])
+                                    if (String(historydata.result[i].id) == historyArr[j]) {
+                                        songerArr = []
+                                        historydata.result[i].song.artists.forEach(item => {
+                                            songerArr.push(item.name)
+                                        });
+
+                                        // console.log(songerArr)
+
+                                        let $list = $(` <div class="song-list">
+                                                            <div class="list-song">${historydata.result[i].name}</div>
+                                                            <div class="list-songer">${songerArr.join('/')}</div>
+                                                            <div class="list-album">《${historydata.result[i].song.album.name}》</div>
+                                                            <div class="icon-bofan">
+                                                                <span class="iconfont icon-bofang bo" data-id="${historydata.result[i].id}" data-name="${historydata.result[i].name}" data-img="${historydata.result[i].picUrl}"></span>
+                                                            </div>
+                                                        </div>`)
+
+                                        $('.song-it').append($list)
+                                    }
+                                }
+                            }
+                            gongneng()
+                        }
+                    })
+                }
+            })
+        })
+    </script>
+    <script>
+        let audio = document.querySelector('audio');
+        let local = document.querySelector('.local')
+        let sl = document.querySelectorAll('.sl')
+        console.log(sl)
+
+        const LOCALSTORAGE_KEY = 'history'
+
+        audio.onloadedmetadata = function () {
+            // console.log('媒体元素播放方法被触发');
+            let time = parseInt(audio.duration)
+            console.log(time)
+            let minutes = parseInt(time / 60)
+            // console.log(minutes)
+            let seconds = time - (minutes * 60)
+            // console.log(seconds)
+            minutes = String(minutes).length > 1 ? minutes : String(minutes).length < 2 ? '0' + minutes : minutes
+            seconds = String(seconds).length > 1 ? seconds : String(seconds).length < 2 ? '0' + seconds : seconds
+            minutes = String(minutes)
+            seconds = String(seconds)
+            // console.log(minutes,seconds)
+            document.querySelector('.endtime').textContent = minutes + ":" + seconds
+
+        }
+
+        for (let i = 0; i < sl.length; i++) {
+            sl[i].onclick = function () {
+                let active = document.querySelector('.active')
+
+                active.classList.remove('active')
+
+                // console.log(this)
+                this.classList.add('active')
+            }
+        }
+
+
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>
