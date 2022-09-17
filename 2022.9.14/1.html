@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/1.css">
+</head>
+
+<body>
+
+    <div class="box">
+        <diV class="main">
+            <div class="top">
+                <div class="top-t">
+                    <div class="choose">请选择画笔颜色:</div>
+                    <div class="item">
+                        <div class="list" data-color="黑色"></div>
+                        <div class="list" data-color="红色"></div>
+                        <div class="list" data-color="橙色"></div>
+                        <div class="list" data-color="黄色"></div>
+                        <div class="list" data-color="绿色"></div>
+                        <div class="list" data-color="蓝色"></div>
+                    </div>
+                </div>
+
+                <div class="top-b">
+                    <button class="clear">清空画布</button>
+                    <div class="color">当前所选颜色:<span class="color-text">黑色</span></div>
+                    <button class="eraser">橡皮擦</button>
+                </div>
+            </div>
+            <div class="bottom">
+                <canvas id="canvas" width="600px" height="500px"></canvas>
+                <div class="eraser-block"></div>
+            </div>
+        </diV>
+    </div>
+
+
+    <script>
+        let list = document.querySelectorAll('.list')
+        let canvas = document.getElementById('canvas')
+        let eraser = document.querySelector('.eraser')
+        let clear = document.querySelector('.clear')
+        let draw = canvas.getContext('2d')
+        let eraserBlock = document.querySelector('.eraser-block')
+
+        for (let i = 0; i < list.length; i++) {
+            list[i].onclick = function () {
+                document.querySelector('.color-text').textContent = this.dataset.color
+                document.querySelector('.color-text').style.color = getComputedStyle(this).backgroundColor
+                let colorBtn = this
+
+                move(getComputedStyle(colorBtn).backgroundColor)
+            }
+        }
+
+        clear.onclick = function () {
+            draw.clearRect(0, 0, 600, 500)
+        }
+
+        eraser.onclick = function () {
+            canvas.onmousedown = function (e1) {
+                eraserBlock.style.display = 'block'
+                canvas.onmousemove = function (e2) {
+                    let left = e2.offsetX
+                    let top = e2.offsetY
+                    left = left <= 20 ? 20 : left >= 579 ? 579 : left
+                    top = top <= 20 ? 20 : top >= 479 ? 479 : top
+
+                    eraserBlock.style.top = top - 20 + 'px'
+                    eraserBlock.style.left = left - 20 + 'px'
+                    draw.clearRect(left - 20, top - 20, 40, 40)
+                }
+            }
+
+            document.onmouseup = function () {
+                canvas.onmousemove = null
+                eraserBlock.style.display = 'none'
+            }
+        }
+
+
+        function move(color) {
+            canvas.onmousedown = function (e1) {
+                let x1 = e1.offsetX;
+                let y1 = e1.offsetY;
+                draw.beginPath()
+                draw.strokeStyle = `${color}`
+                draw.moveTo(x1, y1)
+                canvas.onmousemove = function (e2) {
+                    // console.log(e2.offsetX, e2.offsetY)
+                    draw.lineTo(e2.offsetX, e2.offsetY)
+                    draw.stroke()
+                }
+            }
+
+            document.onmouseup = function () {
+                canvas.onmousemove = null
+            }
+
+            canvas.onmouseleave = function () {
+                draw.beginPath()
+            }
+        }
+
+        move('black')
+    </script>
+
+</body>
+
+</html>
