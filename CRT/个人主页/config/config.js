@@ -2,7 +2,7 @@ var config = {
     /*在这里配置你的基本信息，所有数据以字符串形式给出*/
     name: "陈如锑",
     sex: "女",
-    age: "23",
+    age: "26",
     phone: "18888888888",
     email: "laughing@请求.com",
     address: "现居广东广州",
@@ -72,13 +72,13 @@ var config = {
      * img表示您的作品图片链接，url表示您的项目地址，ProjectName表示您的仓库或作品名称，brief是一句简短的介绍
      * 通过查看实际效果以调整字题长度
      */
-    portfolio: [
-        ["./images/1.png", "https://laughing-h.github.io/2022.8.20/1.html", "滑动验证", "滑动块验证"],
-        ["./images/2.png", "https://laughing-h.github.io/2022.8.30/1.html", "仿华为官网", "一个仿华为官网的响应式布局"],
-        ["./images/3.png", "https://laughing-h.github.io/2022.8.27/1.html", "天气预报", "未来七天的天气预报"],
-        ["./images/4.png", "https://laughing-h.github.io/2022.9.9/1.html", "仿qq音乐播放器", "一个仿仿qq音乐的播放器"],
-        ["./images/5.png", "https://laughing-h.github.io/2022.9.14/1.html", "画板", "画板"],
-        ["./images/6.png", "https://laughing-h.github.io/仿瑞幸咖啡/打包后源码/index.html", "仿瑞幸咖啡", "仿瑞幸咖啡页面"],
+     portfolio: [
+        ["./images/1.png", "https://laughing-h.github.io/CRT/2022.8.20/1.html", "滑动验证", "滑动块验证"],
+        ["./images/2.png", "https://laughing-h.github.io/CRT/2022.8.30/1.html", "仿华为官网", "一个仿华为官网的响应式布局"],
+        ["./images/3.png", "https://laughing-h.github.io/CRT/2022.8.27/1.html", "天气预报", "未来七天的天气预报"],
+        ["./images/4.png", "https://laughing-h.github.io/CRT/2022.9.9/1.html", "仿qq音乐播放器", "一个仿仿qq音乐的播放器"],
+        ["./images/5.png", "https://laughing-h.github.io/CRT/2022.9.14/1.html", "画板", "画板"],
+        ["./images/6.png", "https://laughing-h.github.io/CRT/仿瑞幸咖啡/打包后源码/index.html", "仿瑞幸咖啡", "仿瑞幸咖啡页面"],
     ],
 
 
